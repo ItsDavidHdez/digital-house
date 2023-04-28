@@ -5,17 +5,19 @@ import {
   StyleSheet,
   TouchableWithoutFeedback,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import moment from "moment";
 import React from "react";
 
 export default function Products(props) {
   const { product } = props;
+  const navigation = useNavigation();
 
   moment.locale("es");
   const dt = product.createdAt;
 
   const goToProduct = () => {
-    console.log("Go to product", product.product);
+    navigation.navigate("Product", { id: product.id });
   };
 
   return (

@@ -4,6 +4,7 @@ import HeaderHome from "../components/HeaderHome";
 import PointsHeader from "../components/PointsHeader";
 import Moviments from "../components/Moviments";
 import { useGetData } from "../hooks/useGetData";
+import { API_URL } from "../utils/constants";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
@@ -16,7 +17,7 @@ export default function Home() {
 
   const loadData = async () => {
     try {
-      const response = await useGetData();
+      const response = await useGetData(API_URL);
       setProducts(response);
       return;
     } catch (error) {
