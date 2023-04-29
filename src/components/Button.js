@@ -2,9 +2,10 @@ import { Pressable, StyleSheet, Text } from "react-native";
 import React from "react";
 
 export default function ButtonComponent(props) {
-  const { label, onPress } = props;
+  const { label, onPress, stylesButton } = props;
+
   return (
-    <Pressable style={styles.button} onPress={onPress}>
+    <Pressable style={[styles.button, stylesButton]} onPress={onPress}>
       <Text style={styles.text}>{label}</Text>
     </Pressable>
   );
