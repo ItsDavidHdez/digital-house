@@ -6,15 +6,12 @@ import {
   TouchableWithoutFeedback,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import moment from "moment";
+import { useGetDateFormatted } from "../hooks/useGetDateFormatted";
 import React from "react";
 
 export default function Products(props) {
   const { product } = props;
   const navigation = useNavigation();
-
-  moment.locale("es");
-  const dt = product.createdAt;
 
   const goToProduct = () => {
     navigation.navigate("Product", { id: product.id });
@@ -26,7 +23,9 @@ export default function Products(props) {
         <Image source={{ uri: product.image }} style={styles.image} />
         <View style={styles.containerInfo}>
           <Text style={styles.name}>{product.product}</Text>
-          <Text style={styles.date}>{moment(dt).format("LL")}</Text>
+          <Text style={styles.date}>
+            {useGetDateFormatted(product.createdAt, "es")}
+          </Text>
         </View>
         <View style={styles.points}>
           <Text style={styles.pointsText}>{product.points}</Text>
