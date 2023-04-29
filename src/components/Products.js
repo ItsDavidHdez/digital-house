@@ -7,6 +7,7 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useGetDateFormatted } from "../hooks/useGetDateFormatted";
+import Symbol from "./Symbol";
 import React from "react";
 
 export default function Products(props) {
@@ -28,7 +29,9 @@ export default function Products(props) {
           </Text>
         </View>
         <View style={styles.points}>
-          <Text style={styles.pointsText}>{product.points}</Text>
+          <Text style={styles.pointsText}>
+            <Symbol isTrueOrFalse={product?.is_redemption} /> {product.points}
+          </Text>
         </View>
       </View>
     </TouchableWithoutFeedback>
