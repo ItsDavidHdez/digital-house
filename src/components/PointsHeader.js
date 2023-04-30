@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import React, { useState, useEffect } from "react";
 
 export default function PointsHeader(props) {
@@ -10,7 +10,7 @@ export default function PointsHeader(props) {
     (() => {
       loadPointsData();
     })();
-  }, []);
+  }, [products]);
   let pointsArray = [];
   let totalData = 0;
 
@@ -34,7 +34,15 @@ export default function PointsHeader(props) {
           <Text style={styles.pointsTitle}>Diciembre</Text>
           <View style={styles.points}>
             <Text style={styles.pointsText}>
-              {totalFormatted == 0 ? "Cargando..." : `${totalFormatted} pts`}
+              {totalFormatted == 0 ? (
+                <ActivityIndicator
+                  size="large"
+                  style={styles.spinner}
+                  color="#AEAEAE"
+                />
+              ) : (
+                `${totalFormatted} pts`
+              )}
             </Text>
           </View>
         </View>
@@ -82,5 +90,9 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     alignItems: "center",
     alignSelf: "center",
+  },
+
+  spinner: {
+    marginBottom: Platform.OS === "android" ? 30 : 0,
   },
 });

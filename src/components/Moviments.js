@@ -78,7 +78,7 @@ export default function Moviments(props) {
       </View>
       <FlatList
         data={handlerRenderData()}
-        numColumns={1}
+        numColumns={2}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => <Products product={item} />}
         keyExtractor={(product) => String(product.id)}
