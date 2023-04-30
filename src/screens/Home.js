@@ -15,10 +15,17 @@ export default function Home() {
     })();
   }, []);
 
+  let arrayDataRender = [];
+  let account = 5;
+
   const loadData = async () => {
     try {
       const response = await useGetData(API_URL);
-      setProducts(response);
+      for (let index = 0; index < account; index++) {
+        arrayDataRender.push(response[index]);
+      }
+
+      setProducts(arrayDataRender);
       return;
     } catch (error) {
       console.error(error);
@@ -33,7 +40,7 @@ export default function Home() {
     <View style={styles.container}>
       <HeaderHome />
       <PointsHeader products={productsFiltered} />
-      <Moviments products={products} />
+      <Moviments products={products} loadData={loadData} />
     </View>
   );
 }

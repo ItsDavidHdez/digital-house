@@ -5,12 +5,12 @@ import {
   Text,
   View,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Products from "./Products";
 import ButtonComponent from "./Button";
 
 export default function Moviments(props) {
-  const { products } = props;
+  const { products, loadData } = props;
   const [isWon, setIsWon] = useState(false);
   const [isRedeemed, setIsRedeemed] = useState(false);
   const [isTotal, setIsTotal] = useState(true);
@@ -52,8 +52,16 @@ export default function Moviments(props) {
   };
 
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.yourMoviments}>TUS MOVIMIENTOS</Text>
+      <FlatList
+        data={handlerRenderData()}
+        numColumns={1}
+        showsVerticalScrollIndicator={false}
+        renderItem={({ item }) => <Products product={item} />}
+        keyExtractor={(product) => String(product.id)}
+        contentContainerStyle={styles.flatListContentContainer}
+      />
       <View style={styles.buttonComponent}>
         {!isTotal ? (
           <ButtonComponent
@@ -76,27 +84,15 @@ export default function Moviments(props) {
           </>
         )}
       </View>
-      <FlatList
-        data={handlerRenderData()}
-        numColumns={2}
-        showsVerticalScrollIndicator={false}
-        renderItem={({ item }) => <Products product={item} />}
-        keyExtractor={(product) => String(product.id)}
-        contentContainerStyle={styles.flatListContentContainer}
-        onEndReachedThreshold={0.1}
-        ListFooterComponent={
-          <ActivityIndicator
-            size="large"
-            style={styles.spinner}
-            color="#AEAEAE"
-          />
-        }
-      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    height: "65%",
+  },
+
   button: {
     width: "48%",
   },
