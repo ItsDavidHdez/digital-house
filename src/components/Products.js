@@ -19,22 +19,24 @@ export default function Products(props) {
   };
 
   return (
-    <TouchableWithoutFeedback onPress={goToProduct}>
-      <View style={styles.container}>
-        <Image source={{ uri: product.image }} style={styles.image} />
-        <View style={styles.containerInfo}>
-          <Text style={styles.name}>{product.product}</Text>
-          <Text style={styles.date}>
-            {useGetDateFormatted(product.createdAt, "es")}
-          </Text>
+    <>
+      <TouchableWithoutFeedback onPress={goToProduct}>
+        <View style={styles.container}>
+          <Image source={{ uri: product.image }} style={styles.image} />
+          <View style={styles.containerInfo}>
+            <Text style={styles.name}>{product.product}</Text>
+            <Text style={styles.date}>
+              {useGetDateFormatted(product.createdAt, "es")}
+            </Text>
+          </View>
+          <View style={styles.points}>
+            <Text style={styles.pointsText}>
+              <Symbol isTrueOrFalse={product?.is_redemption} /> {product.points}
+            </Text>
+          </View>
         </View>
-        <View style={styles.points}>
-          <Text style={styles.pointsText}>
-            <Symbol isTrueOrFalse={product?.is_redemption} /> {product.points}
-          </Text>
-        </View>
-      </View>
-    </TouchableWithoutFeedback>
+      </TouchableWithoutFeedback>
+    </>
   );
 }
 

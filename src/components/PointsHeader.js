@@ -1,7 +1,31 @@
 import { View, Text, StyleSheet } from "react-native";
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-export default function PointsHeader() {
+export default function PointsHeader(props) {
+  const { products } = props;
+  const [pointsData, setPointsData] = useState([]);
+  const [total, setTotal] = useState(0);
+
+  useEffect(() => {
+    (() => {
+      loadPointsData();
+    })();
+  }, []);
+  let pointsArray = [];
+  let totalData = 0;
+
+  const loadPointsData = () => {
+    for (const product of products) {
+      pointsArray.push(product.points);
+      totalData += product.points;
+      setTotal(totalData);
+    }
+
+    setPointsData([...pointsData, ...pointsArray]);
+  };
+
+  totalFormatted = total.toLocaleString("en");
+
   return (
     <>
       <Text style={styles.yourPoints}>TUS PUNTOS</Text>
@@ -9,7 +33,9 @@ export default function PointsHeader() {
         <View style={styles.pointsContainer}>
           <Text style={styles.pointsTitle}>Diciembre</Text>
           <View style={styles.points}>
-            <Text style={styles.pointsText}>10,00.00 pts</Text>
+            <Text style={styles.pointsText}>
+              {totalFormatted == 0 ? "Cargando..." : `${totalFormatted} pts`}
+            </Text>
           </View>
         </View>
       </View>

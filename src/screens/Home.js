@@ -25,10 +25,14 @@ export default function Home() {
     }
   };
 
+  const productsFiltered = products.filter(
+    (product) => product.is_redemption === false
+  );
+
   return (
     <View style={styles.container}>
       <HeaderHome />
-      <PointsHeader />
+      <PointsHeader products={productsFiltered} />
       <Moviments products={products} />
     </View>
   );
