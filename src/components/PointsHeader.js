@@ -1,4 +1,10 @@
-import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ActivityIndicator,
+  Platform,
+} from "react-native";
 import React, { useState, useEffect } from "react";
 
 export default function PointsHeader(props) {

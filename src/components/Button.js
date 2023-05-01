@@ -5,7 +5,11 @@ export default function ButtonComponent(props) {
   const { label, onPress, stylesButton } = props;
 
   return (
-    <Pressable style={[styles.button, stylesButton]} onPress={onPress}>
+    <Pressable
+      style={[styles.button, stylesButton]}
+      onPress={onPress}
+      testID="button-component"
+    >
       <Text style={styles.text}>{label}</Text>
     </Pressable>
   );

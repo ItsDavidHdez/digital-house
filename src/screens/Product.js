@@ -8,21 +8,18 @@ import ButtonComponent from "../components/Button";
 export default function Product(props) {
   const [product, setProduct] = useState([]);
 
-  const {
-    navigation,
-    route: { params },
-  } = props;
+  const { navigation, route } = props;
 
   useEffect(() => {
     (async () => {
       try {
-        const response = await useGetData(`${API_URL}/${params.id}`);
+        const response = await useGetData(`${API_URL}/${route?.params.id}`);
         setProduct(response);
       } catch (error) {
         console.error(error);
       }
     })();
-  }, [params]);
+  }, [route?.params]);
 
   if (!product) return null;
 

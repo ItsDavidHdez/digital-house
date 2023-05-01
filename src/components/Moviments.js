@@ -1,25 +1,19 @@
-import {
-  FlatList,
-  ActivityIndicator,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
-import React, { useEffect, useState } from "react";
+import { FlatList, StyleSheet, Text, View, Platform } from "react-native";
+import React, { useState } from "react";
 import Products from "./Products";
 import ButtonComponent from "./Button";
 
 export default function Moviments(props) {
-  const { products, loadData } = props;
+  const { products } = props;
   const [isWon, setIsWon] = useState(false);
   const [isRedeemed, setIsRedeemed] = useState(false);
   const [isTotal, setIsTotal] = useState(true);
 
-  const dataWithFalseFilters = products.filter(
+  const dataWithFalseFilters = products?.filter(
     (product) => product.is_redemption === true
   );
 
-  const dataWithTrueFilters = products.filter(
+  const dataWithTrueFilters = products?.filter(
     (product) => product.is_redemption === false
   );
 
@@ -62,12 +56,13 @@ export default function Moviments(props) {
         keyExtractor={(product) => String(product.id)}
         contentContainerStyle={styles.flatListContentContainer}
       />
-      <View style={styles.buttonComponent}>
+      <View style={styles.buttonComponent} testID="elements-container">
         {!isTotal ? (
           <ButtonComponent
             label="Todos"
             onPress={handlerTotal}
             stylesButton={styles.allButton}
+            testID="all-button"
           />
         ) : (
           <>
@@ -75,11 +70,13 @@ export default function Moviments(props) {
               label="Ganados"
               onPress={handlerWon}
               stylesButton={styles.button}
+              testID="win-button"
             />
             <ButtonComponent
               label="Canjeados"
               onPress={handlerRedeemed}
               stylesButton={styles.button}
+              testID="redeemed-button"
             />
           </>
         )}
