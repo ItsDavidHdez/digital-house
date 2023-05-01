@@ -26,7 +26,7 @@ export default function Products(props) {
           <View style={styles.containerInfo}>
             <Text style={styles.name}>{product.product}</Text>
             <Text style={styles.date}>
-              {useGetDateFormatted(product.createdAt, "es")}
+              {useGetDateFormatted(product.createdAt)}
             </Text>
           </View>
           <View style={styles.points}>

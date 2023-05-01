@@ -39,7 +39,7 @@ export default function Product(props) {
         <View style={styles.textContainer}>
           <Text style={styles.details}>Detalles del producto:</Text>
           <Text style={styles.shopped}>
-            Comprado el {useGetDateFormatted(product.createdAt, "es")}
+            Comprado el {useGetDateFormatted(product.createdAt)}
           </Text>
           <Text style={styles.shop}>Con esta compra acomulaste:</Text>
           <Text style={styles.points}>{product.points} puntos</Text>
